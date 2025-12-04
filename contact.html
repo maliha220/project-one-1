@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap-5.0.2-dist/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.0.2-dist/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  color:#222;
+  overflow-x:hidden;
+  transition:0.3s;
+}
+
+/* ========================= NAVBAR ========================= */
+.navbar {
+  width: 100%;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: #ffffff;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.08);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color:#0e2f66;
+}
+
+/* ===== Desktop Menu ===== */
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items:center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  font-size: 16px;
+  transition: .2s;
+}
+
+.nav-links a:hover {
+  color: #0558ff;
+}
+
+/* ===== Desktop Dropdown ===== */
+.dropdown { position: relative; }
+
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background: linear-gradient(180deg, rgb(29,74,122) 0%, rgba(4,33,62,0.96) 100%);
+  padding: 10px 0;
+  border-radius: 8px;
+  display: none;
+  min-width: 190px;
+  box-shadow:0 8px 30px rgba(4,33,62,0.18);
+  z-index: 1100;
+}
+
+.dropdown:hover .dropdown-menu { display:block; }
+
+.dropdown-menu a {
+  padding: 10px 16px;
+  color: #fff;
+  text-decoration:none;
+  display:block;
+}
+
+.dropdown-menu a:hover {
+  color:#bfe8ff;
+  background:rgba(255,255,255,0.03);
+}
+
+/* CALL BUTTON */
+.call-btn {
+  padding:10px 18px;
+  background:#f8c428;
+  color:#111;
+  border-radius:8px;
+  text-decoration:none;
+}
+
+/* =========== Mobile Button =========== */
+.menu-btn {
+  width:34px;
+  height:26px;
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.menu-btn div {
+  height:4px;
+  background:#111;
+  border-radius:4px;
+}
+
+/* ===================== MOBILE NAV ===================== */
+.mobile-nav {
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:78%;
+  max-width:360px;
+  height:100%;
+  background:#fff;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:0.32s;
+  z-index:1200;
+  box-shadow:-8px 0 30px rgba(0,0,0,0.12);
+}
+
+.mobile-nav.active { right:0; }
+
+.mobile-nav a {
+  font-size:18px;
+  color:#222;
+  text-decoration:none;
+}
+
+.mobile-drop-btn {
+  font-size:18px;
+  cursor:pointer;
+  padding:10px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.mobile-dropdown-content {
+  display:none;
+  padding-left:12px;
+  flex-direction:column;
+  gap:8px;
+}
+
+.mobile-dropdown-content.show { display:flex; }
+
+.mobile-call-btn {
+  padding:12px 14px;
+  background:#ffd829;
+  border-radius:8px;
+  color:#111;
+  text-decoration:none;
+}
+
+/* Backdrop */
+.backdrop {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  display:none;
+  z-index:1100;
+}
+
+.backdrop.show { display:block; }
+
+/* Responsive */
+@media(max-width:992px){
+  .nav-links,
+  .call-btn { display:none; }
+
+  .menu-btn { display:flex; }
+}
+
+/* ========================= FOOTER ========================= */
+.tralive-footer {
+  background: #0d1b4c;
+  position: relative;
+  color: #fff;
+  padding-top: 120px;
+}
+
+.tralive-footer::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background:url("https://preview.colorlib.com/theme/tralive/assets/img/shape/footer_top.png") no-repeat center/cover;
+}
+
+.footer-top { padding-bottom:60px; }
+
+.footer-logo img {
+  width:180px;
+  margin-bottom:20px;
+}
+
+.footer-list { list-style:none; padding:0; }
+
+.footer-list li a {
+  color:#d5d8f3;
+  text-decoration:none;
+  display:block;
+  padding:5px 0;
+}
+
+.footer-list li a:hover { color:#ffcc00; }
+
+.footer-social a {
+  margin-right:10px;
+  font-size:18px;
+  color:white;
+}
+
+.footer-phone {
+  font-size:20px;
+  font-weight:bold;
+  color:#ffcc00;
+}
+
+.footer-bottom {
+  background:#091433;
+  text-align:center;
+  padding:18px 0;
+  color:#d5d8f3;
+  margin-top:40px;
+  font-size:14px;
+}
+
+
+.team1{
+    padding: 60px;
+    background: linear-gradient(135deg, #1a1a1a, #000);
+}
+
+
+.team2{
+    padding: 80px;
+    background:lightgray;
+}
+.team22{
+    background-image:url(img/OIP83.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 800px;
+    opacity: 0.8;
+}
+.team22 h1{
+  font-weight: bold;
+    font-size:90px;
+        color:rgb(20, 20, 20);
+}
+
+.team11{
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  
+}
+
+
+
+.butto{
+  border: 1px solid lightgray;
+  background-color: white;
+  color: rgb(100, 98, 98);
+}
+
+.card-left{
+  display: flex;
+  font-size: small;
+}
+.tean1{
+  justify-content: center;
+  padding-left: 30px;
+  gap: 30px;
+  justify-content: space-between;
+}
+.tean1 i{
+  font-size: 48px;
+}
+</style>
+<body>
+    
+ <nav class="navbar">
+
+  <div class="logo fw-bold">✈️ Tralive</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="event.html">Events</a></li>
+    <li><a href="about.html">About</a></li>
+
+    <!-- ===== DROPDOWN ===== -->
+    <li class="dropdown">
+      <a href="blog.html" class="drop-btn">Blog ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="event detail.html">Events Details</a></li>
+        <li><a href="single-blog.html">Blog Details</a></li>
+        <li><a href="element.html">Element</a></li>
+      </ul>
+    </li>
+
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <!-- CALL BUTTON -->
+  <a class="call-btn"><i class="fa fa-phone"></i> +10 (67) 678 2567</a>
+
+  <!-- MOBILE BUTTON -->
+  <div class="menu-btn" id="menu-btn">
+    <div></div><div></div><div></div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#">Home</a>
+  <a href="#">Events</a>
+  <a href="#">About</a>
+
+  <!-- DROPDOWN MOBILE -->
+  <div class="mobile-dropdown">
+    <p class="mobile-drop-btn">Blog ▾</p>
+    <div class="mobile-dropdown-content">
+      <a href="#">Blog</a>
+      <a href="#">Events Details</a>
+      <a href="#">Blog Details</a>
+      <a href="#">Element</a>
+    </div>
+  </div>
+
+  <a href="#">Contact</a>
+  <a class="mobile-call-btn">📞 +10 (67) 678 2567</a>
+</div>
+
+<div class="backdrop" id="backdrop"></div>
+
+<main>
+
+
+    <div class="container-fluid  py-5 team22 ">
+      <div class="row justify-content-center align-items-center py-5 ">
+        <div class="col-12  py-5">
+<h1 class="text-center my-5 m-5 fw-bold">contact</h1>
+        </div>
+      </div>
+    </div>
+  
+    
+    
+    
+      
+      
+          <div class="team2">
+              <div class="map-container mt-4 rounded-4 overflow-hidden shadow-lg ">
+                  <iframe 
+                    src="https://www.google.com/maps?q=Herat,Afghanistan&output=embed"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                  </iframe>
+                </div>
+          </div>
+      
+      
+      
+      <div class="team11 py-3 mt-4 m-3">
+          <div class="row">
+              <h1 style="color: #000;">Get in Touch</h1>
+              <div class="col-sm-12 col-lg-6 col-md-6 px-5 py-3">
+                  <div class="py-3">
+                      <textarea class="form-control" id="message" rows="5" required placeholder="Enter Message"></textarea>
+                    </div>
+      
+      <div class="row">
+        
+        <div class="col-12 col-md-6 col-lg-6 py-2">
+          <input type="text" class="form-control" placeholder=" Enter your name">
+      </div>
+      
+      <div class="col-12 col-md-6 col-lg-6 py-2">
+          
+          <input type="email" class="form-control" placeholder=" Enter your Email">
+      </div>
+      
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="name" required placeholder="Enter your subject">
+      </div>
+      <button class="mb-3  py-3 px-5 butto">
+    <p>SEND</p>
+      </button>
+              </div>
+      
+      <div class="col-sm-12 col-lg-6 col-md-6 tean1 px-5 py-5 p-4">
+      
+          <div class="row">
+            <!-- ستون چپ -->
+            <div class=" col-12 col-md-12 col-lg-12 ">
+              <div class="col-12  col-lg-6 col-md-6 d-flex px-5">
+                <i style="color: rgb(14, 33, 110); font-size: 50px;" class="fa fa-home "></i>
+                <div class="text-left  ms-3">
+                  <h6 style="color: #000;">Buttonwood,California.</h6>
+                  <p style="color: gray">Rosemead, CA91770</p>
+                </div>
+              </div>
+              <br>
+              <div class="col-12 col-md-6 col-lg-6 d-flex px-5">
+                <i style="color: rgb(12, 29, 100);" class="fa fa-phone"></i>
+                <div class="text-left   ms-3">
+                  <h6 style="color: #000;">+1 253 565 </h6>
+                  <p style="color:gray">Mon to Fri 9am to 6pm</p>
+                </div>
+              </div>
+              <br>
+              <div class="col-12 col-md-6 col-lg-6 d-flex px-5">
+                <i style="color:  rgb(12, 29, 100);" class="fa fa-envelope"></i>
+                <div class="text-left   ms-3">
+                  <h6 style="color: #000;">Support@colorlib.com</h6>
+                  <p style="color: gray;">Send Us your querry anytime</p>
+                </div>
+              </div>
+            
+       
+            </div>
+      
+            
+         
+            </div>
+          
+      </div>
+      
+          </div>
+      </div>
+
+
+</main>
+
+  
+
+
+
+
+
+
+
+
+<footer class="tralive-footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <!-- LOGO + TEXT -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-logo">
+           <a href="" style="text-decoration: none; color: white; font-size: 40px;">  ✈️Tralive</a>
+          </div>
+          <p>
+            Land behold it created good saw after she'd Our set living. Signs midst dominion creepeth morning
+            labor is nisi ufsit aliquip.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="col-lg-2 col-md-6">
+          <h4>Navigation</h4>
+          <ul class="footer-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="col-lg-3 col-md-6">
+          <h4>Services</h4>
+          <ul class="footer-list">
+            <li><a href="#">Blackforest</a></li>
+            <li><a href="#">Bodhubon</a></li>
+            <li><a href="#">Rongdhonu</a></li>
+            <li><a href="#">Meghrong</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-lg-3 col-md-6">
+          <h4>Contact Us</h4>
+          <p>76/A, Green Lane, Dhanmondi, NYC</p>
+          <p>demomail89@gmail.com</p>
+          <p class="footer-phone">+10 (78) 738-9083</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>Copyright ©2025 All rights reserved | This template is made with 💙 by Colorlib</p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+<script>
+  const video = document.getElementById("heroVideo");
+  const playBtn = document.getElementById("playBtn");
+
+  playBtn.addEventListener("click", function () {
+    video.play();
+    playBtn.style.display = "none";
+  });
+</script>
+
+  <!-- بقیه محتوای سایت (اگر لازم است اضافه کن) -->
+<!-- ====================== FULL JAVASCRIPT ====================== -->
+
+<script>
+/* ============================================
+   SLIDER LOGIC
+============================================ */
+(function() {
+  const track = document.getElementById('track');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const dotsWrap = document.getElementById('dots');
+  const carousel = document.getElementById('carousel');
+
+  let cards = Array.from(track.children);
+  let index = 0;
+  let autoInterval = null;
+  const GAP = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--gap')) || 28;
+
+  function cardsPerView() {
+    const w = window.innerWidth;
+    if (w < 576) return 1;
+    if (w < 992) return 2;
+    return 4;
+  }
+
+  function createDots() {
+    dotsWrap.innerHTML = '';
+    const total = cards.length;
+    const view = cardsPerView();
+    const pages = Math.max(1, total - view + 1);
+    for (let i = 0; i < pages; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.dataset.i = i;
+      d.addEventListener('click', () => { goTo(parseInt(d.dataset.i)); restartAuto(); });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function update() {
+    cards = Array.from(track.children);
+    const cardW = cards[0].offsetWidth;
+    const move = (cardW + GAP) * index;
+    track.style.transform = `translateX(${-move}px)`;
+
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function goTo(i) {
+    const total = cards.length;
+    const view = cardsPerView();
+    const maxIndex = Math.max(0, total - view);
+    index = Math.max(0, Math.min(maxIndex, i));
+    update();
+  }
+
+  prev.addEventListener('click', () => { goTo(index - 1); restartAuto(); });
+  
+  next.addEventListener('click', () => { 
+    const total = cards.length;
+    const view = cardsPerView();
+    const maxIndex = Math.max(0, total - view);
+    if (index < maxIndex) goTo(index + 1);
+    else goTo(0);
+    restartAuto();
+  });
+
+  function startAuto() {
+    stopAuto();
+    autoInterval = setInterval(() => {
+      const total = cards.length;
+      const view = cardsPerView();
+      const maxIndex = Math.max(0, total - view);
+      index = index < maxIndex ? index + 1 : 0;
+      update();
+    }, 3500);
+  }
+
+  function stopAuto() {
+    if (autoInterval) { 
+      clearInterval(autoInterval); 
+      autoInterval = null; 
+    }
+  }
+
+  function restartAuto() {
+    stopAuto();
+    startAuto();
+  }
+
+  carousel.addEventListener('mouseenter', stopAuto);
+  carousel.addEventListener('mouseleave', startAuto);
+
+  window.addEventListener('resize', () => {
+    createDots();
+    const total = cards.length;
+    const view = cardsPerView();
+    const maxIndex = Math.max(0, total - view);
+    if (index > maxIndex) index = maxIndex;
+    update();
+  });
+
+  createDots();
+  update();
+  startAuto();
+
+})();
+</script>
+<script>
+/* ============================================
+   FLOATING CAR ANIMATION
+============================================ */
+(function(){
+  const car = document.querySelector('.car');
+  if (car) {
+    let pos = 0;
+    function animate(){
+      pos += 0.05;
+      car.style.transform = `translateX(-50%) translateY(${Math.sin(pos) * 6}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+})();
+</script>
+<script>
+/* ============================================
+   NAVBAR SCROLL EFFECT
+============================================ */
+(function(){
+  const nav = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+})();
+</script>
+<script>
+/* ============================================
+   MOBILE MENU + DROPDOWN
+============================================ */
+(function(){
+  const btn = document.getElementById("menu-btn");
+  const mobileNav = document.getElementById("mobile-nav");
+  const backdrop = document.getElementById("backdrop");
+
+  const mobileDropBtn = document.querySelector(".mobile-drop-btn");
+  const mobileDropContent = document.querySelector(".mobile-dropdown-content");
+
+  // open mobile menu
+  btn.addEventListener('click', () => {
+    mobileNav.classList.add("active");
+    backdrop.classList.add("show");
+    document.body.style.overflow = "hidden";
+  });
+
+  // close mobile menu
+  backdrop.addEventListener('click', () => {
+    mobileNav.classList.remove("active");
+    backdrop.classList.remove("show");
+    document.body.style.overflow = "auto";
+  });
+
+  // mobile dropdown toggle
+  mobileDropBtn.addEventListener("click", () => {
+    mobileDropContent.classList.toggle("show");
+  });
+
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
